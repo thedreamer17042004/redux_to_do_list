@@ -1,5 +1,7 @@
 import { Row, Tag, Checkbox } from 'antd';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux'
+import { toogleTodoStatus } from '../../redux/action';
 
 const priorityColorMapping = {
   High: 'red',
@@ -7,11 +9,14 @@ const priorityColorMapping = {
   Low: 'gray',
 };
 
-export default function Todo({ name, prioriry, completed }) {
+export default function Todo({ name, prioriry, completed, id }) {
+  const dispatch = useDispatch();
   const [checked, setChecked] = useState(completed);
 
   const toggleCheckbox = () => {
     setChecked(!checked);
+    dispatch(toogleTodoStatus(id))
+    // toogleTodoStatus là một action creator là một function nên cần phải thực thi mình cần truyền cho nó một todoId 
   };
 
   return (

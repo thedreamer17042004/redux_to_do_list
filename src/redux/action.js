@@ -16,6 +16,14 @@ export const addTodo = (data) => {
     }
 }
 
+export const toogleTodoStatus = (todoId) => {
+    return {
+        type: 'todoList/toogleTodoStatus',
+        payload: todoId
+        // id để bt được thằng nào mình đang thao tác mà thôi
+    }
+}
+
 
 //tao action thanh cong
 export const searchFilterChange = (text) => {
