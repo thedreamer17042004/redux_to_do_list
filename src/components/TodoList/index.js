@@ -6,7 +6,7 @@ import { addTodo } from '../../redux/action';
 // để tạo ra cái id duy nhất ta phải download a library uuid
 import {v4 as uuidv4} from 'uuid'
 import { useState } from 'react';
-import { todoListSelector } from '../../redux/selector';
+import { todoListSelector, searchTextSelector, todoRemainingSelector } from '../../redux/selector';
 
 export default function TodoList() {
   // để lưu chữ được dữ liệu thông tin người  dùng nhập từ input thì ta phải lưu chữ chúng trong một state
@@ -15,11 +15,16 @@ export default function TodoList() {
 
   const dispatch = useDispatch();
   // dispatch to bắn đi một function
-  const todoList = useSelector(todoListSelector);
+  const todoList = useSelector(todoRemainingSelector);
   // useselector sẽ nhận vào một cái selector(như là một cái function thôi nhaa)
 
+  //lay du lieu cua kho ra ben ngoai
+  // const seachText = useSelector(searchTextSelector)
+
+
+  // console.log({todoList, seachText});
+
   const handleAddButtonClick = () => {
-    
     dispatch(
       addTodo({
         id: uuidv4(),
@@ -30,10 +35,6 @@ export default function TodoList() {
     );
     setTodoName('')
     setPriority('Medium')
-
-
-
-
   }
 
   const handleInputChange = (e) => {

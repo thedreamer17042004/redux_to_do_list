@@ -1,8 +1,18 @@
 import { Col, Row, Input, Typography, Radio, Select, Tag } from 'antd';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { searchFilterChange } from '../../redux/action';
 
 const { Search } = Input;
 
 export default function Filters() {
+  const dispatch = useDispatch();
+  const [searchText, setsearchText] = useState('');
+
+  const handlerSearchTextChange = (e) => {
+    setsearchText(e.target.value);
+    dispatch(searchFilterChange(e.target.value));
+  }
   return (
     <Row justify='center'>
       <Col span={24}>
@@ -11,7 +21,7 @@ export default function Filters() {
         >
           Search
         </Typography.Paragraph>
-        <Search placeholder='input search text' />
+        <Search placeholder='input search text' value={searchText} onChange={handlerSearchTextChange} />
       </Col>
       <Col sm={24}>
         <Typography.Paragraph

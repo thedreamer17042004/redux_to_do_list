@@ -1,33 +1,24 @@
-// here is the file update the data from the actions that dispatch sends
-const initState = {
-    filters: {
-        search: '',
-        status: 'All',
-        priority: []
-    },
-    todoList: [
-        { id: 1, name: 'Learn Yoga', completed: false, priority: 'Medium'},
-        { id: 2, name: 'Learn Redux', completed: true, priority: 'High'},
-        { id: 3, name: 'Learn Javascript', completed: false, priority: 'Low'},
-    ]
-}
-const rootReducer = (state = initState, action) => {
-    console.log({state, action})
-    switch(action.type) {
-        case 'todoList/addTodo': 
-            return {
-                //copy an object
-                ...state,
-                todoList: [
-                    ...state.todoList,
-                    action.payload
-                    
-                ]
+// redux cung cấp cho chúng ta combineReducer là giúp cho cốt chúng ta gọn hơn
+import { combineReducers } from 'redux'
+import filtersReducer from "../components/Filters/FiltersSlice";
+import TodoListReducer from "../components/TodoList/TodoSlice";
 
-            }
-        default:
-            return state
+
+
+//c1
+const rootReducer = (state = {}, action) => {
+    return {
+        filters: filtersReducer(state.filters, action),
+        todoList: TodoListReducer(state.todoList, action),
     }
 }
 
+
+// c2
+// const rootReducer = combineReducers({
+//     filters: filtersReducer,
+//     TodoList: TodoListReducer,
+// })
 export default rootReducer;
+
+// de cap nhat duoc state trong mot cai kho chung thi ta dung disapach

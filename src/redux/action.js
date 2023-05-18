@@ -15,4 +15,20 @@ export const addTodo = (data) => {
         payload: data
     }
 }
+
+
+//tao action thanh cong
+export const searchFilterChange = (text) => {
+    return {
+        type: 'filters/searchFilterChange',
+        payload: text
+    }
+}
 //action creators => function để trả về function
+
+export  const statusFilterChange = (status) => {
+    return {
+        type: 'filters/statusFilterChange',
+        payload: status
+    }
+}
