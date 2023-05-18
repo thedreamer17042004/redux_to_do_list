@@ -25,10 +25,19 @@ export const searchFilterChange = (text) => {
     }
 }
 //action creators => function để trả về function
-
+// do ta chọn được nhiều độ ưu tiên cùng môt lúc nên ta truyền props vào là một array
 export  const statusFilterChange = (status) => {
     return {
         type: 'filters/statusFilterChange',
         payload: status
+    }
+}
+
+
+
+export  const priorityFilterChange = (priorites) => {
+    return {
+        type: 'filters/priorityFilterChange',
+        payload: priorites
     }
 }
